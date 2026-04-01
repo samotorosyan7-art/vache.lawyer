@@ -46,7 +46,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${playfair.variable} ${cormorant.variable} ${dmSans.variable}`}>
+    <html lang={locale} className={`${playfair.variable} ${cormorant.variable} ${dmSans.variable}`} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ClientLayout>

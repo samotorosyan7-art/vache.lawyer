@@ -1,6 +1,6 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import Philosophy from '@/components/Philosophy';
+import Protocol from '@/components/Protocol';
 import Services from '@/components/Services';
 import Ticker from '@/components/Ticker';
 import IntakeForm from '@/components/IntakeForm';
@@ -16,7 +16,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Philosophy />
+        <Protocol />
         <Services />
         <Ticker />
         <IntakeForm />

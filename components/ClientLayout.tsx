@@ -1,8 +1,11 @@
 'use client';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  // Scroll reveal
+  const pathname = usePathname();
+
+  // Scroll reveal - Re-run on every navigation
   useEffect(() => {
     const reveals = document.querySelectorAll<HTMLElement>('.reveal');
     const observer = new IntersectionObserver(
@@ -10,14 +13,26 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
     reveals.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+
+    // Safety fallback: if elements are still hidden after 4s, show them
+    const timer = setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 4000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, [pathname]);
 
   // Smooth internal link scroll
   useEffect(() => {

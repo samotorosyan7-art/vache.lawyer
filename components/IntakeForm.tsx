@@ -78,6 +78,10 @@ export default function IntakeForm() {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [description, setDescription] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
@@ -109,6 +113,28 @@ export default function IntakeForm() {
     setSelectedCountry(c);
     closeDropdown();
     phoneRef.current?.focus();
+  };
+
+  const submitForm = async () => {
+    setIsLoading(true);
+    const fullPhone = `${selectedCountry.dial} ${phoneRef.current?.value || ''}`.trim();
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category, name, email, phone: fullPhone, description })
+      });
+      if (res.ok) {
+        goToStep(2);
+      } else {
+        console.error('Failed to submit the form');
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -163,9 +189,9 @@ export default function IntakeForm() {
           <p style={{ fontSize: '13px', color: 'var(--faint)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '20px' }}>
             {category}
           </p>
-          <input className="intake-input" type="text" placeholder={t('placeholderDesc')} />
-          <input className="intake-input" type="text" placeholder={t('placeholderName')} />
-          <input className="intake-input" type="email" placeholder={t('placeholderEmail')} />
+          <input className="intake-input" type="text" placeholder={t('placeholderDesc')} value={description} onChange={(e) => setDescription(e.target.value)} />
+          <input className="intake-input" type="text" placeholder={t('placeholderName')} value={name} onChange={(e) => setName(e.target.value)} />
+          <input className="intake-input" type="email" placeholder={t('placeholderEmail')} value={email} onChange={(e) => setEmail(e.target.value)} />
 
           <div className="phone-input-wrapper" ref={wrapperRef}>
             <button type="button" className="country-select-btn" onClick={toggleDropdown}>
@@ -195,7 +221,9 @@ export default function IntakeForm() {
             <input ref={phoneRef} type="tel" className="phone-number-input" placeholder={t('placeholderPhone')} />
           </div>
 
-          <button className="intake-submit" onClick={() => goToStep(2)}>{t('continue')}</button>
+          <button className="intake-submit" onClick={submitForm} disabled={isLoading}>
+            {isLoading ? '...' : t('continue')}
+          </button>
           <br />
           <button className="intake-back" onClick={() => goToStep(0)}>← {t('back')}</button>
         </div>

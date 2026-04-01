@@ -3,13 +3,15 @@ import { Link } from '@/navigation';
 
 export default function Archive() {
   const t = useTranslations('Archive');
-  const items = t.raw('items') as Array<{ 
+  const rawItems = t.raw('items');
+  const items = Array.isArray(rawItems) ? (rawItems as Array<{ 
     tag: string; 
     title: string; 
     date: string; 
     excerpt?: string; 
-    isFeatured: boolean 
-  }>;
+    isFeatured: boolean;
+    slug?: string;
+  }>) : [];
 
   return (
     <section id="archive">
@@ -25,16 +27,18 @@ export default function Archive() {
         {items.map((a, i) => (
           <Link 
             key={i} 
-            href="/insights" 
+            href={a.slug ? `/insights/${a.slug}` : "/insights"} 
             className={`archive-card${a.isFeatured ? ' featured' : ''}`}
           >
-            {a.isFeatured && <div className="archive-featured-bg"></div>}
-            <p className="archive-tag">{a.tag}</p>
-            <h3 className="archive-title">{a.title}</h3>
-            {a.excerpt && <p className="archive-excerpt">{a.excerpt}</p>}
-            <p className="archive-meta" style={!a.isFeatured ? { marginTop: '12px' } : undefined}>
-              {a.date}
-            </p>
+            <div className="archive-card-content">
+              {a.isFeatured && <div className="archive-featured-bg"></div>}
+              <p className="archive-tag">{a.tag}</p>
+              <h3 className="archive-title">{a.title}</h3>
+              {a.excerpt && <p className="archive-excerpt">{a.excerpt}</p>}
+              <p className="archive-meta" style={!a.isFeatured ? { marginTop: '12px' } : undefined}>
+                {a.date}
+              </p>
+            </div>
           </Link>
         ))}
       </div>

@@ -1,8 +1,11 @@
+'use client';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 
 export default function Services() {
   const t = useTranslations('Services');
-  const items = t.raw('items') as Array<{ num: string, title: string, desc: string, outcome: string }>;
+  const rawItems = t.raw('items');
+  const items = Array.isArray(rawItems) ? (rawItems as Array<{ num: string, slug: string, title: string, desc: string, outcome: string }>) : [];
 
   return (
     <section id="services">
@@ -17,17 +20,45 @@ export default function Services() {
       </div>
       <div className="services-grid">
         {items.map((s, index) => (
-          <div key={s.num} className={`service-card reveal reveal-delay-${(index % 3) + 1}`}>
+          <Link 
+            key={s.num} 
+            href={`/practice-areas/${s.slug}`}
+            className={`service-card reveal reveal-delay-${(index % 3) + 1}`}
+          >
             <div className="service-num">{s.num}</div>
             <h3 className="service-title">{s.title}</h3>
             <p className="service-desc">{s.desc}</p>
             <div className="service-reveal">
               <p className="service-reveal-label">{t('recentOutcomeLabel')}</p>
               <p className="service-reveal-text">&ldquo;{s.outcome}&rdquo;</p>
+              <p className="service-link-hint">Read Strategic Deep-Dive →</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
+      <style jsx>{`
+        .service-link-hint {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--copper);
+          margin-top: 12px;
+          opacity: 0;
+          transform: translateY(5px);
+          transition: all 0.3s ease;
+        }
+        .service-card:hover .service-link-hint {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .service-card {
+          text-decoration: none;
+          color: inherit;
+        }
+        .service-card * {
+          color: inherit !important;
+        }
+      `}</style>
     </section>
   );
 }

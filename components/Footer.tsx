@@ -1,46 +1,101 @@
+'use client';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 
 export default function Footer() {
   const t = useTranslations('Footer');
   const tNav = useTranslations('Nav');
-  const currentYear = new Error().stack?.includes('eval') ? 2026 : new Date().getFullYear(); // Safe for static
+  const currentYear = 2026; // Fixed for hydration consistency
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category: 'Newsletter', email, type: 'newsletter' }),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch (e) {
+      console.error(e);
+      setStatus('error');
+    }
+  };
 
   return (
     <>
       <footer>
-        <div className="reveal">
+        <div className="footer-brand reveal">
           <div className="footer-logo">
-            V<span>S</span> Law
+            <span style={{ color: 'var(--copper)' }}>V</span><span style={{ color: 'var(--copper)' }}>S</span> Law
           </div>
           <p className="footer-tagline">
             {t('tagline')}
           </p>
         </div>
-        <div className="reveal reveal-delay-1">
+        <div className="footer-col reveal reveal-delay-1">
           <p className="footer-col-title">Navigate</p>
           <ul className="footer-links">
-            <li><Link href="/about">{tNav('philosophy')}</Link></li>
+            <li><Link href="/protocol">{tNav('protocol')}</Link></li>
             <li><Link href="/practice-areas">{tNav('practiceAreas')}</Link></li>
             <li><Link href="/contact">{tNav('contact')}</Link></li>
             <li><Link href="/insights">{tNav('insights')}</Link></li>
           </ul>
         </div>
-        <div className="reveal reveal-delay-2">
+        <div className="footer-col reveal reveal-delay-2">
+          <p className="footer-col-title">{t('newsletterTitle')}</p>
+          <p className="footer-col-desc">{t('newsletterSub')}</p>
+          {status === 'success' ? (
+            <p className="footer-col-desc" style={{ color: 'var(--copper)' }}>Thank you for subscribing.</p>
+          ) : (
+            <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+              <input 
+                type="email" 
+                placeholder={t('newsletterPlaceholder')} 
+                required 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === 'loading'}
+              />
+              <button type="submit" className="shadow-btn" disabled={status === 'loading'}>
+                {status === 'loading' ? '...' : '→'}
+              </button>
+            </form>
+          )}
+        </div>
+        <div className="footer-col reveal reveal-delay-3">
           <p className="footer-col-title">Contact</p>
           <div className="footer-contact-item">
-            <strong>{t('address')}</strong>
-            Northern Avenue, 4/2
+            <strong>Location</strong>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=41+Marshal+Baghramyan+Ave,+Yerevan,+Armenia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="footer-contact-link"
+            >
+              {t('address')}
+            </a>
           </div>
           <div className="footer-contact-item">
             <strong>Email</strong>
-            <a href={`mailto:${t('email')}`} style={{ color: 'rgba(245,240,232,0.55)', textDecoration: 'none' }}>
+            <a href={`mailto:${t('email')}`} className="footer-contact-link">
               {t('email')}
             </a>
           </div>
           <div className="footer-contact-item">
             <strong>Phone</strong>
-            {t('phone')}
+            <a href={`tel:${t('phone').replace(/\s+/g, '')}`} className="footer-contact-link">
+              {t('phone')}
+            </a>
           </div>
         </div>
       </footer>
@@ -50,6 +105,49 @@ export default function Footer() {
           Yerevan · Armenia · <a href="#">Privacy</a>
         </span>
       </div>
+      <style jsx>{`
+        .footer-col-desc {
+          font-size: 13px;
+          line-height: 1.5;
+          color: rgba(245,240,232,0.5);
+          margin-bottom: 20px;
+          max-width: 250px;
+        }
+        .newsletter-form {
+          display: flex;
+          gap: 8px;
+        }
+        .newsletter-form input {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid var(--border);
+          padding: 10px 16px;
+          color: var(--bone);
+          font-size: 13px;
+          width: 100%;
+          outline: none;
+        }
+        .newsletter-form input:focus { border-color: var(--copper); }
+        .newsletter-form button {
+          background: var(--copper);
+          color: var(--charcoal);
+          border: none;
+          padding: 0 16px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+        @media (max-width: 1024px) {
+          .newsletter-form { max-width: 300px; }
+        }
+        .footer-contact-link {
+          color: rgba(245,240,232,0.55);
+          text-decoration: none;
+          display: block;
+          transition: color 0.3s ease;
+        }
+        .footer-contact-link:hover {
+          color: var(--copper);
+        }
+      `}</style>
     </>
   );
 }

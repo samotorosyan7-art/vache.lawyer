@@ -13,6 +13,7 @@ export default function Hero() {
           alt={t('name')}
           fill
           style={{ objectFit: 'cover', objectPosition: 'center 15%' }}
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="hero-portrait"
           priority
         />
@@ -21,7 +22,7 @@ export default function Hero() {
       <div className="hero-text-col">
         <p className="hero-overline">{t('overline')}</p>
         <h1 className="hero-name">
-          Vache <em>Simon</em>yan
+          <span style={{ color: 'var(--copper)' }}>V</span>ache <span style={{ color: 'var(--copper)' }}>S</span>imonyan
         </h1>
         <p className="hero-versus">{t('versus')}</p>
         <p className="hero-tagline">{t('tagline')}</p>

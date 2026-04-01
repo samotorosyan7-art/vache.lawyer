@@ -3,7 +3,8 @@ import { useTranslations } from 'next-intl';
 
 export default function Ticker() {
   const t = useTranslations('Ticker');
-  const items = t.raw('items') as Array<{ label: string, sub: string }> || [];
+  const rawItems = t.raw('items');
+  const items = Array.isArray(rawItems) ? (rawItems as Array<{ label: string, sub: string }>) : [];
 
   if (items.length === 0) return null;
 

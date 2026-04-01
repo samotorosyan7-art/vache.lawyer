@@ -1,7 +1,7 @@
 {
   "Nav": {
     "home": "Home",
-    "philosophy": "Philosophy",
+    "protocol": "The Protocol",
     "practiceAreas": "Practice Areas",
     "insights": "Insights",
     "contact": "Contact"
@@ -14,14 +14,22 @@
     "cta": "Begin consultation",
     "scroll": "Scroll"
   },
-  "Philosophy": {
-    "label": "The person",
-    "body1": "Born from a tradition of principled argumentation, Vache brings a decade of precision legal thinking to every matter. Not a generalist. A strategist — one who studies the full battlefield before the first move is made.",
-    "education": "Yerevan State University of Law · Bar of Armenia · Admitted 2014",
-    "strategyLabel": "The strategy",
-    "versusWord": "Ver·Sus",
-    "versusSub": "“Against” — from Latin. In every legal conflict, there is a versus. Vache's name carries it. His method embodies it.",
-    "body2": "Every case is a contest of preparation, framing, and resolve. The question is never if a position can be argued — but how precisely it can be constructed, and how relentlessly it can be defended."
+  "Protocol": {
+    "label": "The methodology",
+    "title": "The Protocol",
+    "sub": "In high-stakes legal conflict, the outcome is determined before the first move is made. Our method is proprietary, disciplined, and relentless.",
+    "phase1": {
+      "title": "Phase 1: Diagnosis & Battlefield Mapping",
+      "desc": "Deep research into the opponent’s position, incentives, and weaknesses. We don't just study the law; we study the context."
+    },
+    "phase2": {
+      "title": "Phase 2: Strategy Construction",
+      "desc": "Defining the 'Versus'—identifying the exact leverage points where the adversary is most vulnerable."
+    },
+    "phase3": {
+      "title": "Phase 3: Relentless Execution",
+      "desc": "Precise, uncompromising legal work. We maintain pressure until the objective is secured."
+    }
   },
   "Services": {
     "label": "Practice areas",
@@ -30,36 +38,42 @@
     "items": [
       {
         "num": "01",
+        "slug": "commercial-litigation",
         "title": "Commercial Litigation",
         "desc": "High-stakes dispute resolution for businesses in Armenia and cross-border contexts. From breach of contract to shareholder conflicts.",
         "outcome": "Secured full damages recovery in a ₽47M contract dispute — opposing counsel settled on day two of trial."
       },
       {
         "num": "02",
+        "slug": "corporate-advisory",
         "title": "Corporate Advisory",
         "desc": "Formation, governance, M&A structuring, and ongoing strategic counsel for founders and institutional clients.",
         "outcome": "Restructured holding group across three jurisdictions — zero tax exposure, full compliance, 90-day execution."
       },
       {
         "num": "03",
+        "slug": "real-estate-property",
         "title": "Real Estate & Property",
         "desc": "Transactional due diligence, title disputes, development agreements, and regulatory clearance for Armenian property matters.",
         "outcome": "Cleared a contested title on a Yerevan commercial property that had been in dispute for eleven years."
       },
       {
         "num": "04",
+        "slug": "contract-architecture",
         "title": "Contract Architecture",
         "desc": "Drafting, review, and negotiation of complex agreements — built to withstand pressure, not just pass a desk review.",
         "outcome": "Renegotiated a vendor agreement saving client $220K annually — completed before deadline with no relationship damage."
       },
       {
         "num": "05",
+        "slug": "regulatory-compliance",
         "title": "Regulatory & Compliance",
         "desc": "Navigating Armenian regulatory frameworks for fintech, media, and foreign-invested enterprises.",
         "outcome": "Obtained operating license for a fintech startup in 38 days — half the standard processing time."
       },
       {
         "num": "06",
+        "slug": "international-arbitration",
         "title": "International Arbitration",
         "desc": "Representation in ICC, LCIA, and ad hoc proceedings. Cross-border expertise with deep local knowledge.",
         "outcome": "Led arbitration defense against a European claimant — award in client's favor, full costs recovered."
@@ -68,12 +82,30 @@
   },
   "Ticker": {
     "items": [
-      { "label": "Business Law", "sub": "Precision at every stage" },
-      { "label": "Versus Uncertainty", "sub": "Strategy before action" },
-      { "label": "Litigation", "sub": "Prepared. Relentless. Precise." },
-      { "label": "Armenia · CIS · International", "sub": "Borders are detail, not obstacles" },
-      { "label": "Advisory", "sub": "Clarity under complexity" },
-      { "label": "Vache Simonyan", "sub": "Your adversary meets their match" }
+      {
+        "label": "Business Law",
+        "sub": "Precision at every stage"
+      },
+      {
+        "label": "Versus Uncertainty",
+        "sub": "Strategy before action"
+      },
+      {
+        "label": "Litigation",
+        "sub": "Prepared. Relentless. Precise."
+      },
+      {
+        "label": "Armenia · CIS · International",
+        "sub": "Borders are detail, not obstacles"
+      },
+      {
+        "label": "Advisory",
+        "sub": "Clarity under complexity"
+      },
+      {
+        "label": "Vache Simonyan",
+        "sub": "Your adversary meets their match"
+      }
     ]
   },
   "IntakeForm": {
@@ -102,47 +134,114 @@
     "title": "Strategic Insights",
     "items": [
       {
-        "tag": "Strategy",
-        "title": "Why Most Business Contracts Fail Before They're Signed",
+        "tag": "Case Study",
+        "title": "Commercial Dispute Strategy: ₽47M Recovery",
         "date": "March 2024",
-        "excerpt": "Legal risk is often mistaken for administrative friction. True contract architecture anticipates the divorce before the marriage.",
+        "excerpt": "Challenge: A complex supply chain dispute involving three jurisdictions. Strategy: Immediate asset freeze followed by surgical pressure on the opponent's main credit line. Resolution: Full recovery plus costs settled in 48 hours.",
         "isFeatured": true
       },
       {
-        "tag": "Litigation",
-        "title": "The Anatomy of a Winnable Case",
+        "tag": "Case Study",
+        "title": "Corporate Restructuring: 90-Day Execution",
         "date": "February 2024",
-        "excerpt": "Success in court is 90% framing. How we define the conflict is how we win it.",
+        "excerpt": "Challenge: A fragmented holding structure causing tax friction. Strategy: Cross-border consolidation through a tech-zone holding company. Resolution: 15% efficiency gain and complete regulatory clearance.",
         "isFeatured": false
       },
       {
-        "tag": "Corporate",
-        "title": "Structuring for Conflict Before It Arrives",
+        "tag": "Resource",
+        "title": "Doing Business in Armenia: 2024 Strategic Guide",
         "date": "January 2024",
-        "excerpt": "Governance is about decision-making during crisis, not just compliance during peace.",
-        "isFeatured": false
-      },
-      {
-        "tag": "Investment",
-        "title": "What Foreign Investors Miss About Armenian Law",
-        "date": "December 2023",
-        "excerpt": "Local nuances in regulatory enforcement can make or break an entry strategy.",
-        "isFeatured": false
-      },
-      {
-        "tag": "Resolution",
-        "title": "When to Settle, When to Fight: A Framework",
-        "date": "November 2023",
-        "excerpt": "The cost of justice is not just financial; it's opportunity cost. Know when the war is worth the resources.",
-        "isFeatured": false
+        "excerpt": "A high-level briefing for foreign investors on regulatory nuances, tax incentives (IT Free Zones), and common pitfalls.",
+        "isFeatured": false,
+        "slug": "doing-business-in-armenia"
       }
     ]
   },
+  "Guides": {
+    "doing-business-in-armenia": {
+      "title": "Gateway to Armenia: A Strategic Briefing",
+      "intro": "Armenia offers a unique intersection of high-skilled human capital and significant tax incentives. However, navigating the regulatory nuances requires a focus on structural integrity.",
+      "sections": [
+        {
+          "title": "Regulatory Nuances",
+          "content": "Unlike many CIS jurisdictions, Armenia has robust protections for foreign investors, including the right to own 100% of local subsidiaries and no restrictions on profit repatriation."
+        },
+        {
+          "title": "Tax Incentives & IT Free Zones",
+          "content": "The IT sector enjoys a 0% corporate tax rate (until 2025/2026) and significantly reduced income tax (10%). Leveraging these zones requires precise corporate structuring from day one."
+        },
+        {
+          "title": "Common Pitfalls",
+          "content": "The most common failure for international firms is assuming 'standard' templates will work. Local employment laws and real estate title chains require specific Armenian expertise."
+        }
+      ]
+    }
+  },
   "Footer": {
     "tagline": "Precision legal strategy for those who can't afford anything less.",
+    "newsletterTitle": "Quarterly Strategic Briefing",
+    "newsletterSub": "Receive high-level insights on the Armenian legal landscape.",
+    "newsletterPlaceholder": "Email address",
     "copyright": "© {year} Vache Simonyan. All rights reserved.",
-    "address": "Yerevan, Armenia",
-    "phone": "+374 (00) 00 00 00",
-    "email": "vache@example.com"
+    "address": "Yerevan, Marshal Baghramyan 41, apt. 9",
+    "phone": "+374 94 363 484",
+    "email": "versus.proc@gmail.com"
+  },
+  "PracticeAreas": {
+    "commercial-litigation": {
+      "title": "Commercial Litigation",
+      "conflict": "Shareholder disputes and breach of contract can paralyze a growing enterprise. In the Armenian market, uncertainty in enforcement often leads to multi-year stagnation.",
+      "versus": "We don’t just litigate; we architect a settlement before the first hearing. Our approach is to define the conflict so precisely that the adversary’s position becomes untenable.",
+      "specialties": ["Interim Measures & Injunctions", "Enforcement of Foreign Judgments", "Shareholder Dispute Resolution", "Debt Recovery Strategies"],
+      "faq": [
+        { "q": "How long does a commercial dispute take in Armenia?", "a": "Direct litigation can take 12-24 months. Our strategy aims for resolution within 6 months through aggressive tactical pressure." },
+        { "q": "Are interim measures effective?", "a": "Yes, if applied with surgical precision to freeze assets before they are moved." }
+      ]
+    },
+    "corporate-advisory": {
+      "title": "Corporate Advisory",
+      "conflict": "Poor governance is a slow-acting poison. Founders often skip the 'rules of the game' in favor of speed, leading to terminal conflict later.",
+      "versus": "We build corporate architectures that anticipate crisis. We structure for conflict so that when it arrives, your position is already fortified.",
+      "specialties": ["M&A Structuring", "Governance Frameworks", "Tax-Efficient Restructuring", "Venture Capital Support"],
+      "faq": [
+        { "q": "What is the best jurisdiction for a holding company?", "a": "It depends on your exit strategy. Armenia offers unique tax incentives for IT and Free Zones that we leverage." }
+      ]
+    },
+    "real-estate-property": {
+      "title": "Real Estate & Property",
+      "conflict": "Property titles in emerging markets can be deceptively fragile. One historical error in a title chain can invalidate a multi-million dollar investment.",
+      "versus": "Exhaustive legal due diligence that goes beyond the certificate. We map the history of every title to eliminate surprises.",
+      "specialties": ["Title Chain Verification", "Development Agreements", "Zoning & Regulatory Clearance", "Commercial Leasing"],
+      "faq": [
+        { "q": "Can foreigners own land in Armenia?", "a": "No, but they can own buildings and have long-term leasehold rights for the land, which is practically identical in use-case." }
+      ]
+    },
+    "contract-architecture": {
+      "title": "Contract Architecture",
+      "conflict": "Standardized templates are administrative friction, not legal protection. They fail exactly when you need them.",
+      "versus": "We draft agreements to withstand pressure. Every clause is a defensive line designed to ensure that if a breach occurs, the resolution is already written in your favor.",
+      "specialties": ["Complex Service Agreements", "Cross-Border Sales", "Licensing & IP Transfers", "Construction Contracts"],
+      "faq": [
+        { "q": "Why not use a standard template?", "a": "Because standard templates don't account for your specific leverage. A custom contract is an offensive weapon." }
+      ]
+    },
+    "regulatory-compliance": {
+      "title": "Regulatory & Compliance",
+      "conflict": "Regulatory landscapes in Armenia change faster than businesses can adapt. Compliance is often mistaken for a checkbox, but it's a license to operate.",
+      "versus": "Proactive navigation. We don't just tell you what the law is; we tell you where it's going and how to stay ahead of the regulator.",
+      "specialties": ["Fintech Licensing", "Data Privacy & GDPR", "Anti-Money Laundering", "Environmental Compliance"],
+      "faq": [
+        { "q": "Is the Central Bank of Armenia startup-friendly?", "a": "Yes, but they demand absolute transparency. We bridge that gap." }
+      ]
+    },
+    "international-arbitration": {
+      "title": "International Arbitration",
+      "conflict": "State courts can be unpredictable for foreign entities. Arbitration is the gold standard for neutrality, but it is expensive and slow if mismanaged.",
+      "versus": "We treat arbitration as a strategic contest. Our goal is to win the proceedings by out-preparing the claimant before the first tribunal meeting.",
+      "specialties": ["ICC & LCIA Representation", "Ad Hoc Proceedings", "Investor-State Disputes", "Arbitral Award Enforcement"],
+      "faq": [
+        { "q": "Is arbitration better than state courts in Armenia?", "a": "For international contracts, absolutely. It ensures a level playing field and enforceable finality." }
+      ]
+    }
   }
 }
